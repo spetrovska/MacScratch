@@ -6,11 +6,6 @@
     <label for="inputPasswordLogin" class="sr-only">Password</label>
     <input type="password" id="inputPasswordLogin" name="password" class="form-control" placeholder="Password" required> <!-- id=inputPasswordLogin -->
 
-<!--    <div th:text="${param.error}" class="text-danger"></div>-->
-<!--    <div class="container">-->
-<!--      <h1 th:if="${hasError}" th:text="${error}"></h1>-->
-<!--    </div>-->
-
     <button class="btn btn-lg btn-primary btn-block btn-login-signup" type="submit" id="yourButtonId">Login</button>
 
     <a href="/signup" id="signup-link" class="linkLoginSignup">Don't have an account? Sign up!</a>
@@ -20,67 +15,3 @@
     </div>
   </form>
 </div>
-<!--<script>-->
-<!--  // Check if the function has already been called in the current session-->
-
-<!--  const hasLocationBeenFetched = sessionStorage.getItem('hasLocationBeenFetched');-->
-
-<!--  // If not, call the getLocation function-->
-<!--  if (!hasLocationBeenFetched) {-->
-<!--    window.onload = function() {-->
-<!--      getLocation();-->
-<!--    };-->
-<!--  }-->
-
-<!--  function getLocation() {-->
-<!--    if (navigator.geolocation) {-->
-<!--      navigator.geolocation.getCurrentPosition(showPosition);-->
-<!--    } else {-->
-<!--      alert("Geolocation is not supported by this browser.");-->
-<!--    }-->
-<!--  }-->
-
-<!--  function showPosition(position) {-->
-<!--    const latitude = position.coords.latitude;-->
-<!--    const longitude = position.coords.longitude;-->
-
-<!--    // Send the location to your Spring Controller-->
-<!--    window.location.href = `/login?latitude=${latitude}&longitude=${longitude}`;-->
-
-<!--    // Set a flag in sessionStorage indicating that the location has been fetched-->
-<!--    sessionStorage.setItem('hasLocationBeenFetched', true);-->
-<!--  }-->
-<!--</script>-->
-<!--<script>-->
-<!--  // Check if the function has already been called in the current session-->
-<!--  const hasLocationBeenFetched = sessionStorage.getItem('hasLocationBeenFetched');-->
-
-<!--  // Define the getLocation function-->
-<!--  function getLocation() {-->
-<!--    if (navigator.geolocation) {-->
-<!--      navigator.geolocation.getCurrentPosition(showPosition);-->
-<!--    } else {-->
-<!--      alert("Geolocation is not supported by this browser.");-->
-<!--    }-->
-<!--  }-->
-
-<!--  // Attach the getLocation function to the button click event-->
-<!--  document.getElementById("yourButtonId").addEventListener("click", function() {-->
-<!--    // Check if the location has already been fetched-->
-<!--    if (!hasLocationBeenFetched) {-->
-<!--      // Call getLocation function when the button is clicked-->
-<!--      getLocation();-->
-<!--    }-->
-<!--  });-->
-
-<!--  function showPosition(position) {-->
-<!--    const latitude = position.coords.latitude;-->
-<!--    const longitude = position.coords.longitude;-->
-
-<!--    // Send the location to your Spring Controller-->
-<!--    window.location.href = `/login?latitude=${latitude}&longitude=${longitude}`;-->
-
-<!--    // Set a flag in sessionStorage indicating that the location has been fetched-->
-<!--    sessionStorage.setItem('hasLocationBeenFetched', true);-->
-<!--  }-->
-<!--</script>-->

@@ -2,10 +2,10 @@ package com.example.dians_proba.bootstrap;
 
 import com.example.dians_proba.model.Monument;
 import com.example.dians_proba.model.User;
-import jakarta.annotation.PostConstruct;
+// import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 import java.util.List;
 
 @Component
