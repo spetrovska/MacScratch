@@ -15,7 +15,7 @@ public class MonumentController {
     @Autowired
     private MonumentService monumentService;
 
-    @GetMapping
+    @GetMapping("all")
     public List<Monument> listAll() {
         return monumentService.listAllMonuments();
     }
