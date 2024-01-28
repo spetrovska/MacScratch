@@ -1,10 +1,12 @@
 package spring.webapplication.service;
 
+import jakarta.servlet.http.HttpServletRequest;
 import spring.webapplication.model.City;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface CityService {
-    City findByCityName(String name);
-    List<City> findCities();
+    List<City> findByCityName(String name, HttpServletRequest request);
+    Optional<City> findCities();
 }

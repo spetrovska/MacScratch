@@ -1,8 +1,12 @@
 package spring.webapplication.service.impl;
 
 import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RequestCallback;
+import org.springframework.web.client.ResponseExtractor;
 import org.springframework.web.client.RestTemplate;
 import spring.webapplication.model.Monument;
 import spring.webapplication.model.User;
@@ -22,17 +26,30 @@ public class WishServiceImpl implements WishService {
     }
 
     @Override
-    public void addToWishList(String username, String name) {
+    public Long addToWishList(String username, String name) {
+        String authUserEndpoint = "https://macscratchdeploy-production.up.railway.app/" + "/auth/authUser";
+        System.out.println("ENDPOINT: " + authUserEndpoint);
 
-//        ResponseEntity<String> responseEntity = restTemplate.postForEntity("http://localhost:9000/wishlist/"+name, null, String.class);
+        HttpHeaders headers = new HttpHeaders();
+        headers.set("Authorization", username);
+        headers.set("Content-Type", "application/json");
 
+        RequestCallback requestCallback = request -> request.getHeaders().addAll(headers);
+
+        ResponseExtractor<ResponseEntity<Long>> responseExtractor = restTemplate.responseEntityExtractor(Long.class);
+
+        ResponseEntity<Long> responseEntity = restTemplate.execute(authUserEndpoint, HttpMethod.GET, requestCallback, responseExtractor);
+
+        //ResponseEntity<Long> responseEntity = restTemplate.getForEntity(authUserEndpoint, Long.class);
+        System.out.println("RESPONSE: " + responseEntity);
+        return responseEntity.getBody();
     }
 
     @Override
     public List<Monument> getWishList(String username, HttpServletRequest request) {
         User user = (User) request.getSession().getAttribute("user");
         if (user != null) {
-            Wish[] wishes1 = restTemplate.getForObject("http://localhost:9000/wishlist/" + username, Wish[].class);
+            Wish[] wishes1 = restTemplate.getForObject("https://macscratchdeploy-production.up.railway.app/wishlist/" + username, Wish[].class);
             List<Wish> wishes = Arrays.asList(wishes1);
             return wishes.stream().map(Wish::getMonument).collect(Collectors.toList());
         } else {

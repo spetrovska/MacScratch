@@ -12,6 +12,6 @@ eureka:
     register-with-eureka: true
     fetch-registry: true
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: https://macscratchdeploy-production.up.railway.app/eureka/
   instance:
     hostname: app0

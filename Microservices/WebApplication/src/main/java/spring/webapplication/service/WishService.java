@@ -6,6 +6,6 @@ import spring.webapplication.model.Monument;
 import java.util.List;
 
 public interface WishService {
-    void addToWishList(String username, String name);
+    Long addToWishList(String username, String name);
     List<Monument> getWishList(String username, HttpServletRequest request);
 }
