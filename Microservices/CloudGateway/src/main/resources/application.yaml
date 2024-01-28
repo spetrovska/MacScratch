@@ -1,0 +1,36 @@
+server:
+  port: 9191
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    gateway:
+      routes:
+        - id: LISTS-SERVICE
+          uri: lb://LISTS-SERVICE
+          predicates:
+            - Path=/list/**
+#        - id: MONUMENT-SERVICE
+#          uri: lb://MONUMENT-SERVICE
+#          predicates:
+#            - Path=/scratch/**
+#        - id: CITIES-SERVICE
+#          uri: lb://CITIES-SERVICE
+#          predicates:
+#            - Path=/cities-monuments/**
+        - id: WEB-APP
+          uri: lb://WEB-APP
+          predicates:
+            - Path=/**
+
+
+
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: https://macscratchdeploy-production.up.railway.app/
+  instance:
+    hostname: app0

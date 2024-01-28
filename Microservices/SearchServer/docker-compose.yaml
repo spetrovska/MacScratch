@@ -1,0 +1,82 @@
+version: '3'
+services:
+  db:
+    image: "postgres"
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: Nikolapass1212.
+  app0:
+    build: .
+    image: "dians-server/search-server-docker.jar"
+    ports:
+      - "8761:8761"
+  app1:
+    build: .
+    image: "dians-lists/lists-docker.jar"
+    ports:
+      - "9001:9001"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres?currentSchema=dizajn_proekt
+      SPRING_DATASOURCE_USERNAME: postgres
+      SPRING_DATASOURCE_PASSWORD: Nikolapass1212.
+    depends_on:
+      - db
+      - app0
+      - app6
+#  app2:
+#    build: .
+#    image: "dians-veterinary/veterinary-docker.jar"
+#    ports:
+#      - "9002:9002"
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres?currentSchema=dizajn_proekt
+#      SPRING_DATASOURCE_USERNAME: postgres
+#      SPRING_DATASOURCE_PASSWORD: Nikolapass1212.
+#    depends_on:
+#      - db
+#      - app0
+#      - app6
+#  app3:
+#    build: .
+#    image: "dians-pharmacy/pharmacy-docker.jar"
+#    ports:
+#      - "9003:9003"
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres?currentSchema=dizajn_proekt
+#      SPRING_DATASOURCE_USERNAME: postgres
+#      SPRING_DATASOURCE_PASSWORD: Nikolapass1212.
+#    depends_on:
+#      - db
+#      - app0
+#      - app6
+#  app4:
+#    build: .
+#    image: "dians-hospital/hospital-docker.jar"
+#    ports:
+#      - "9004:9004"
+#    environment:
+#      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres?currentSchema=dizajn_proekt
+#      SPRING_DATASOURCE_USERNAME: postgres
+#      SPRING_DATASOURCE_PASSWORD: Nikolapass1212.
+#    depends_on:
+#      - db
+#      - app0
+#      - app6
+  app5:
+    build: .
+    image: "dians-web-app/web-app-docker.jar"
+    ports:
+      - "9005:9005"
+    depends_on:
+      - app0
+      - app6
+  app6:
+    build: .
+    image: "dians-api/api-docker.jar"
+    ports:
+      - "9191:9191"
+    depends_on:
+      - app0
